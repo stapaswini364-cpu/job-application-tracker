@@ -88,76 +88,118 @@ job-application-tracker/
 │
 ├── .gitignore
 └── README.md
-Setup and Installation
-1. Clone the repository
+```
+
+## Setup and Installation
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/stapaswini364-cpu/job-application-tracker.git
 cd job-application-tracker
-2. Install backend dependencies
+```
+
+### 2. Install backend dependencies
+
+```bash
 cd server
 npm install
-3. Configure environment variables
+```
 
-Create a .env file inside the server folder:
+### 3. Configure environment variables
 
-MONGO_URI=mongodb://stapaswini364_db_user:xMVWlZYb0VHV9rmm@ac-tsqvhwh-shard-00-00.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-01.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-02.lgcu532.mongodb.net:27017/job_application_tracker?authSource=admin&replicaSet=atlas-x6f950-shard-0&tls=true&retryWrites=true&w=majority
+Create a `.env` file inside the `server` folder:
 
-Do not commit the .env file to GitHub.
+```env
+MONGO_URI=mongodb://stapaswini364_db_user:ooUPsC8foiUnCLoI@ac-tsqvhwh-shard-00-00.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-01.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-02.lgcu532.mongodb.net:27017/job_application_tracker?authSource=admin&replicaSet=atlas-x6f950-shard-0&tls=true&retryWrites=true&w=majority
+PORT=5000
+```
 
-4. Install frontend dependencies
+Do not commit the `.env` file to GitHub.
+
+### 4. Install frontend dependencies
 
 Open another terminal and run:
 
+```bash
 cd client
 npm install
-5. Start the application
+```
+
+### 5. Start the application
 
 From the project root:
 
+```bash
 cd server
 node server.js
+```
 
 The application will run at:
 
+```text
 http://localhost:5000
+```
 
 The backend API is available under:
 
+```text
 http://localhost:5000/api
+```
 
 Health check:
 
+```text
 http://localhost:5000/api/health
-API Endpoints
-Method	Endpoint	Description
-GET	/api/applications	Get all applications
-POST	/api/applications	Create an application
-GET	/api/applications/:id	Get one application
-PUT	/api/applications/:id	Update an application
-DELETE	/api/applications/:id	Delete an application
-GET	/api/health	Check API status
-AI Tool Used
+```
 
-Kiro
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/applications` | Get all applications |
+| POST | `/api/applications` | Create an application |
+| GET | `/api/applications/:id` | Get one application |
+| PUT | `/api/applications/:id` | Update an application |
+| DELETE | `/api/applications/:id` | Delete an application |
+| GET | `/api/health` | Check API status |
+
+## AI Tool Used
+
+**Kiro**
 
 Kiro was used as the AI development assistant during the project.
 
-AI Development Experience
+## AI Development Experience
 
 Kiro was used to review the existing MERN codebase, identify code quality and error-handling issues, suggest improvements, implement a centralized Express error-handling middleware, and help diagnose and fix an issue where controller-level error handling prevented the centralized middleware from handling invalid MongoDB ObjectIds.
 
 All AI-generated suggestions were reviewed, tested, and verified before being included in the project.
 
-Specific AI-Assisted Tasks
-MERN project code review
+## Specific AI-Assisted Tasks
+
+### 1. MERN Project Code Review
+
 Kiro reviewed the frontend, backend, REST API routes, MongoDB model, validation, error handling, and project structure to identify potential issues and improvements.
-Centralized Express error handling
-Kiro helped implement server/middleware/errorHandler.js to provide consistent JSON error responses for API errors.
-Mongoose CastError handling
-Kiro identified that controller-level catch blocks were handling MongoDB ObjectId errors before the centralized error handler could receive them.
-Error propagation improvement
-Kiro updated the controller functions to use next(error) so unexpected errors and Mongoose errors could be handled by the centralized middleware.
-Testing and verification
-The invalid ObjectId API request was tested after the changes and returned a consistent 400 response with the message Invalid resource ID. Existing application functionality was also verified after the changes.
-GitHub Repository
+
+### 2. Centralized Express Error Handling
+
+Kiro helped implement `server/middleware/errorHandler.js` to provide consistent JSON error responses for API errors.
+
+### 3. Mongoose CastError Handling
+
+Kiro identified that controller-level `catch` blocks were handling MongoDB ObjectId errors before the centralized error handler could receive them.
+
+### 4. Error Propagation Improvement
+
+Kiro updated the controller functions to use `next(error)` so unexpected errors and Mongoose errors could be handled by the centralized middleware.
+
+### 5. Testing and Verification
+
+The invalid ObjectId API request was tested after the changes and returned a consistent `400` response with the message `Invalid resource ID`.
+
+Existing application functionality was also verified after the changes.
+
+## GitHub Repository
 
 https://github.com/stapaswini364-cpu/job-application-tracker
