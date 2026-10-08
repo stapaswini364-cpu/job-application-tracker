@@ -1,7 +1,7 @@
 const JobApplication = require("../models/JobApplication");
 
 // Create a new job application
-const createJobApplication = async (req, res) => {
+const createJobApplication = async (req, res, next) => {
   try {
     const application = await JobApplication.create(req.body);
 
@@ -11,15 +11,12 @@ const createJobApplication = async (req, res) => {
       data: application,
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    next(error);
   }
 };
 
 // Get all job applications
-const getJobApplications = async (req, res) => {
+const getJobApplications = async (req, res, next) => {
   try {
     const applications = await JobApplication.find().sort({
       createdAt: -1,
@@ -31,15 +28,12 @@ const getJobApplications = async (req, res) => {
       data: applications,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    next(error);
   }
 };
 
 // Get a single job application
-const getJobApplicationById = async (req, res) => {
+const getJobApplicationById = async (req, res, next) => {
   try {
     const application = await JobApplication.findById(req.params.id);
 
@@ -55,15 +49,12 @@ const getJobApplicationById = async (req, res) => {
       data: application,
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: "Invalid application ID",
-    });
+    next(error);
   }
 };
 
 // Update a job application
-const updateJobApplication = async (req, res) => {
+const updateJobApplication = async (req, res, next) => {
   try {
     const application = await JobApplication.findByIdAndUpdate(
       req.params.id,
@@ -87,15 +78,12 @@ const updateJobApplication = async (req, res) => {
       data: application,
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    next(error);
   }
 };
 
 // Delete a job application
-const deleteJobApplication = async (req, res) => {
+const deleteJobApplication = async (req, res, next) => {
   try {
     const application = await JobApplication.findByIdAndDelete(
       req.params.id
@@ -113,10 +101,7 @@ const deleteJobApplication = async (req, res) => {
       message: "Job application deleted successfully",
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: "Invalid application ID",
-    });
+    next(error);
   }
 };
 

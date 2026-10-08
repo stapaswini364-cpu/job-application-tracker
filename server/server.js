@@ -9,6 +9,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const jobApplicationRoutes = require("./routes/jobApplicationRoutes");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -39,6 +40,12 @@ async function startServer() {
   });
 
   app.use(vite.middlewares);
+
+  // Error handler must be registered after all routes and middleware so
+  // Express (including Express 5's automatic async error forwarding) can
+  // route unhandled errors here. The four-argument signature is required —
+  // Express identifies error handlers by arity.
+  app.use(errorHandler);
 
   const PORT = process.env.PORT || 5000;
 
