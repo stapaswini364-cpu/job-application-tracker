@@ -1,16 +1,108 @@
-# React + Vite
+# Job Application Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack MERN application for tracking and managing job applications in one place.
 
-Currently, two official plugins are available:
+## Project Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Job Application Tracker helps users maintain their job application records and track the current status of each application.
 
-## React Compiler
+Users can add, view, update, search, filter, and delete job applications.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The application uses MongoDB for data storage, Express.js and Node.js for the backend API, and React.js with Vite for the frontend.
 
-## Expanding the Oxlint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- Add new job applications
+- View all job applications
+- Edit existing applications
+- Delete applications
+- Search applications by company, position, or location
+- Filter applications by status
+- Track application status:
+  - Applied
+  - Interview
+  - Selected
+  - Rejected
+- Track job type:
+  - Full-time
+  - Internship
+  - Contract
+  - Part-time
+- Store application date
+- Store job URL and notes
+- Dashboard statistics
+- MongoDB database integration
+- REST API
+- Responsive UI
+- Single development URL for frontend and backend
+
+## Technologies Used
+
+### Frontend
+
+- React.js
+- Vite
+- JavaScript
+- CSS
+
+### Backend
+
+- Node.js
+- Express.js
+- REST API
+- Mongoose
+
+### Database
+
+- MongoDB Atlas
+
+### Development Tools
+
+- Git
+- GitHub
+- Kiro
+- VS Code
+- Postman
+
+## Project Structure
+
+```text
+job-application-tracker/
+│
+├── client/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+│
+├── .gitignore
+└── README.md
+## AI Tool Used
+
+Code0 was used as the AI development tool during the project.
+
+## AI Development Experience
+
+Code0 was used as a development assistant for generating implementation ideas,
+debugging issues, improving code structure, and solving development problems.
+All AI-generated suggestions were reviewed, tested, and modified where required.
+
+## Specific AI-Assisted Tasks
+
+1. Assisted with designing the Express.js REST API structure.
+2. Assisted with implementing MongoDB CRUD operations using Mongoose.
+3. Assisted with building the React job application form and listing UI.
+4. Assisted with debugging the Vite and Express single-port development setup.
+5. Assisted with implementing search, filtering, editing, and dashboard statistics.
