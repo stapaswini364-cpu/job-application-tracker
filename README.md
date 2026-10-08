@@ -4,11 +4,11 @@ A full-stack MERN application for tracking and managing job applications in one 
 
 ## Project Description
 
-Job Application Tracker helps users maintain their job application records and track the current status of each application.
+Job Application Tracker helps users maintain job application records and track the current status of each application.
 
 Users can add, view, update, search, filter, and delete job applications.
 
-The application uses MongoDB for data storage, Express.js and Node.js for the backend API, and React.js with Vite for the frontend.
+The application uses MongoDB for data storage, Express.js and Node.js for the backend REST API, and React.js with Vite for the frontend.
 
 ## Features
 
@@ -33,7 +33,8 @@ The application uses MongoDB for data storage, Express.js and Node.js for the ba
 - Dashboard statistics
 - MongoDB database integration
 - REST API
-- Responsive UI
+- Loading and error handling
+- Centralized backend error handling
 - Single development URL for frontend and backend
 
 ## Technologies Used
@@ -68,7 +69,6 @@ The application uses MongoDB for data storage, Express.js and Node.js for the ba
 
 ```text
 job-application-tracker/
-│
 ├── client/
 │   ├── src/
 │   │   ├── App.jsx
@@ -83,26 +83,81 @@ job-application-tracker/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── .env
 │   ├── package.json
 │   └── server.js
 │
 ├── .gitignore
 └── README.md
-## AI Tool Used
+Setup and Installation
+1. Clone the repository
+git clone https://github.com/stapaswini364-cpu/job-application-tracker.git
+cd job-application-tracker
+2. Install backend dependencies
+cd server
+npm install
+3. Configure environment variables
 
-Code0 was used as the AI development tool during the project.
+Create a .env file inside the server folder:
 
-## AI Development Experience
+MONGO_URI=mongodb://stapaswini364_db_user:xMVWlZYb0VHV9rmm@ac-tsqvhwh-shard-00-00.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-01.lgcu532.mongodb.net:27017,ac-tsqvhwh-shard-00-02.lgcu532.mongodb.net:27017/job_application_tracker?authSource=admin&replicaSet=atlas-x6f950-shard-0&tls=true&retryWrites=true&w=majority
 
-Code0 was used as a development assistant for generating implementation ideas,
-debugging issues, improving code structure, and solving development problems.
-All AI-generated suggestions were reviewed, tested, and modified where required.
+Do not commit the .env file to GitHub.
 
-## Specific AI-Assisted Tasks
+4. Install frontend dependencies
 
-1. Assisted with designing the Express.js REST API structure.
-2. Assisted with implementing MongoDB CRUD operations using Mongoose.
-3. Assisted with building the React job application form and listing UI.
-4. Assisted with debugging the Vite and Express single-port development setup.
-5. Assisted with implementing search, filtering, editing, and dashboard statistics.
+Open another terminal and run:
+
+cd client
+npm install
+5. Start the application
+
+From the project root:
+
+cd server
+node server.js
+
+The application will run at:
+
+http://localhost:5000
+
+The backend API is available under:
+
+http://localhost:5000/api
+
+Health check:
+
+http://localhost:5000/api/health
+API Endpoints
+Method	Endpoint	Description
+GET	/api/applications	Get all applications
+POST	/api/applications	Create an application
+GET	/api/applications/:id	Get one application
+PUT	/api/applications/:id	Update an application
+DELETE	/api/applications/:id	Delete an application
+GET	/api/health	Check API status
+AI Tool Used
+
+Kiro
+
+Kiro was used as the AI development assistant during the project.
+
+AI Development Experience
+
+Kiro was used to review the existing MERN codebase, identify code quality and error-handling issues, suggest improvements, implement a centralized Express error-handling middleware, and help diagnose and fix an issue where controller-level error handling prevented the centralized middleware from handling invalid MongoDB ObjectIds.
+
+All AI-generated suggestions were reviewed, tested, and verified before being included in the project.
+
+Specific AI-Assisted Tasks
+MERN project code review
+Kiro reviewed the frontend, backend, REST API routes, MongoDB model, validation, error handling, and project structure to identify potential issues and improvements.
+Centralized Express error handling
+Kiro helped implement server/middleware/errorHandler.js to provide consistent JSON error responses for API errors.
+Mongoose CastError handling
+Kiro identified that controller-level catch blocks were handling MongoDB ObjectId errors before the centralized error handler could receive them.
+Error propagation improvement
+Kiro updated the controller functions to use next(error) so unexpected errors and Mongoose errors could be handled by the centralized middleware.
+Testing and verification
+The invalid ObjectId API request was tested after the changes and returned a consistent 400 response with the message Invalid resource ID. Existing application functionality was also verified after the changes.
+GitHub Repository
+
+https://github.com/stapaswini364-cpu/job-application-tracker
